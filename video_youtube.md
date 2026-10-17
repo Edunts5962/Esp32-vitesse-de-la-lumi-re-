@@ -1,6 +1,6 @@
 # Vidéo YouTube : « Mesurer la vitesse de la lumière avec deux ESP32 »
 
-Fichier : [`video/lumiere_esp32_presentation.mp4`](video/lumiere_esp32_presentation.mp4), en 1920 × 1080, 30 images/s, d'une durée de **5 min 11 s**. La vidéo est **sans son** : tu peux enregistrer la voix off ci-dessous, puis ajouter une musique libre de droits (bibliothèque audio de YouTube Studio).
+Fichier : [lumiere_esp32_presentation.mp4](https://github.com/Edunts5962/Esp32-vitesse-de-la-lumi-re-/releases/latest) (page Releases), en 1920 × 1080, 30 images/s, d'une durée de **5 min 36 s**, avec une **voix off française synthétisée** et une musique d'ambiance discrète. Les sous-titres sont dans lumiere_esp32_presentation.fr.srt (page Releases) (YouTube Studio > Sous-titres > Importer un fichier).
 
 Miniature proposée (1280 × 720) : [`images/miniature_youtube.png`](images/miniature_youtube.png).
 
@@ -26,21 +26,21 @@ Une console à écran tactile (ES3C28P, ESP32-S3) guide la mesure et affiche en
 direct les courbes, les statistiques et le résultat.
 
 📂 Code, tutoriel, protocole pour étudiants, simulateur :
-https://github.com/votre-compte/vitesse-lumiere-esp32
+https://github.com/Edunts5962/Esp32-vitesse-de-la-lumi-re-
 
 Chapitres
 0:00 Introduction
 0:14 La question : 3,34 ns par mètre
-0:32 L'idée : un aller-retour d'onde radio
-0:56 Le chronomètre caché du Wi-Fi : FTM
-1:30 Le bruit et la statistique
-1:54 La droite qui donne c
-2:22 Le matériel
-2:42 Le logiciel
-2:54 Démonstration sur la carte
-4:26 Mode opératoire pour une classe
-4:48 Résultat
-5:00 Fin
+0:33 L'idée : un aller-retour d'onde radio
+1:00 Le chronomètre caché du Wi-Fi : FTM
+1:38 Le bruit et la statistique
+2:04 La droite qui donne c
+2:32 Le matériel
+3:01 Le logiciel
+3:13 Démonstration sur la carte
+4:48 Mode opératoire pour une classe
+5:12 Résultat
+5:26 Fin
 
 Matériel : ESP32-S3 (ES3C28P avec écran 2,8" tactile) + ESP32-S3 DevKit,
 mètre ruban, 2 batteries USB. Arduino IDE, paquet ESP32 3.x.
@@ -55,36 +55,62 @@ ESP32, ESP32-S3, vitesse de la lumière, speed of light, Wi-Fi FTM, 802.11mc, fi
 
 ---
 
-## Script de la voix off (calé sur la vidéo)
+## Texte de la voix off (tel qu'il est dit dans la vidéo)
 
-| Temps | Ce qu'on voit | Voix off |
-|---|---|---|
-| **0:00** | Faisceau lumineux, titre | « La lumière est la chose la plus rapide de l'Univers. Aujourd'hui, on va la chronométrer… avec deux cartes électroniques à quelques euros. » |
-| **0:14** | Compteur 299 792 458 m/s, la Terre | « La lumière parcourt près de trois cent mille kilomètres par seconde : sept fois et demie le tour de la Terre en une seconde. » |
-| **0:22** | Règle de 1 m, photon | « Pour traverser un mètre, elle met 3,34 nanosecondes, soit trois milliardièmes de seconde. » |
-| **0:28** | Question | « Alors comment chronométrer ça avec un microcontrôleur ? » |
-| **0:32** | Carte A, carte B, onde | « L'idée : utiliser le Wi-Fi. Les ondes radio sont de la lumière invisible : elles voyagent exactement à la même vitesse. Une carte envoie un signal, l'autre répond. » |
-| **0:44** | Formule 2d/c | « Le temps d'aller-retour vaut deux fois la distance divisée par c. À 10 mètres, cela fait 66,7 nanosecondes. » |
-| **0:56** | Diagramme t1… t4 | « Et le Wi-Fi sait mesurer ce temps ! C'est le Fine Timing Measurement, prévu pour la géolocalisation en intérieur. La radio horodate chaque trame : départ t1, arrivée t2, réponse t3, retour t4. » |
-| **1:10** | Formule | « On calcule t4 moins t1, et on retire le temps de réponse de l'autre carte, t3 moins t2. Il ne reste que le trajet de l'onde. » |
-| **1:20** | Liste | « L'ESP32-S3 fait tout ça en matériel, par paliers de 1,56 nanoseconde, environ 115 fois par seconde. » |
-| **1:30** | Histogramme qui se remplit | « Problème : une seule mesure est bruitée, à plus ou moins 4,5 nanosecondes, soit 70 centimètres. Mais en moyennant 600 mesures, l'erreur est divisée par racine de 600 : on descend à 3 centimètres. » |
-| **1:54** | Points, puis droite | « On répète à huit distances, de 2 à 20 mètres. Les points s'alignent sur une droite. Sa pente vaut 2 sur c… donc c égale 2 divisé par la pente. Et les petits retards fixes de l'électronique ne changent pas la pente. » |
-| **2:22** | Les cartes | « Le matériel : une console ES3C28P, avec un ESP32-S3 et un écran tactile, et une deuxième carte ESP32-S3 qui sert de répondeur. Plus un mètre ruban. Attention : l'ESP32 classique et les premiers ESP32-C6 ne savent pas faire de FTM. » |
-| **2:35** | Cœurs et PSRAM | « Dans la console, un cœur s'occupe du Wi-Fi et de l'écran, l'autre calcule et dessine l'interface. » |
-| **2:42** | Arborescence | « Tout le code est en Arduino et il est sur GitHub : le programme des deux cartes, un simulateur PC et cette vidéo. » |
-| **2:54** | Démonstration : démarrage | « Au démarrage, la console cherche la carte A et s'y connecte. Le temps de vol s'affiche en direct. » |
-| **3:03** | Réglages | « Dans les réglages : la source des mesures, le plan de mesure, le nombre de mesures par point, la luminosité. » |
-| **3:17** | Règle | « On indique la distance mesurée au mètre ruban avec une règle tactile. » |
-| **3:22** | Trop près | « Premier piège : trop près, à 50 centimètres, une partie des mesures est bloquée à zéro. L'écran prévient, et on supprime ce point. » |
-| **3:35** | Première mesure | « À 2 mètres : 600 mesures en 5 secondes, avec l'histogramme en direct. » |
-| **3:42** | Révélation | « Dès la deuxième distance, la console calcule une première valeur de c. » |
-| **3:53** | Plan accéléré | « On continue jusqu'à 20 mètres… » |
-| **4:07** | Courbe | « Les points s'alignent parfaitement, et chaque point garde ses statistiques. » |
-| **4:12** | Résultat | « Résultat : 298,9 millions de mètres par seconde, à 0,3 % de la valeur exacte. » |
-| **4:16** | Stats | « Et l'onglet Stats montre tout ce que la carte a calculé. » |
-| **4:26** | Mode opératoire | « Pour le faire en classe : dehors, les cartes à un mètre du sol, antennes face à face, de 2 à 20 mètres, sans personne entre les cartes. » |
-| **4:48** | Résultat | « Ce résultat vient du simulateur, calé sur de vraies mesures. À vous de faire la vraie mesure ! » |
-| **5:00** | GitHub | « Tout est sur GitHub : le code, ce tutoriel et un TP clé en main. Merci d'avoir regardé ! » |
+La voix est générée par `outils/video/narration.py`. Pour la changer, modifie le texte, puis relance `narration.py` et `faire_video.py` (voir l'en-tête des scripts). Si tu préfères enregistrer ta propre voix, garde les mêmes temps de départ.
 
-> Le résultat de 298,9 × 10⁶ m/s montré dans la vidéo vient du simulateur, dont les données sont calées sur de vraies mesures FTM entre deux ESP32-S3 : la vidéo le précise. Si tu filmes ta vraie mesure, remplace cette séquence par ton résultat.
+| Temps | Texte |
+|---|---|
+| 0:01 | La lumière est ce qu'il y a de plus rapide dans l'Univers. |
+| 0:05 | Aujourd'hui, on va la chronométrer, avec deux petites cartes électroniques à quelques euros, et le Wi-Fi. |
+| 0:14 | La lumière voyage à près de trois cent mille kilomètres par seconde. |
+| 0:18 | C'est sept fois et demie le tour de la Terre, en une seule seconde. |
+| 0:22 | Pour traverser un mètre, il lui faut à peine 3,34 nanosecondes. |
+| 0:27 | Alors, comment chronométrer ça, avec une carte à 10 € ? |
+| 0:33 | L'idée : faire un aller-retour avec une onde radio. |
+| 0:36 | La carte A reste fixe. La carte B, la console à écran, est placée à une distance d. |
+| 0:43 | Les ondes Wi-Fi sont de la lumière invisible : elles voyagent exactement à la même vitesse. |
+| 0:49 | Le temps d'aller-retour vaut deux fois la distance, divisée par c. |
+| 0:53 | À 10 mètres, cela fait 66,7 nanosecondes. On va mesurer ce temps à plusieurs distances. |
+| 1:01 | Et le Wi-Fi sait mesurer ce temps ! C'est la mesure fine du temps, appelée FTM dans la norme Wi-Fi. |
+| 1:07 | La carte A envoie une trame, à l'instant t1. La carte B la reçoit à t2. |
+| 1:12 | Puis la carte B renvoie un accusé de réception à t3, reçu par A à t4. |
+| 1:17 | On prend t4 − t1, et on retire le temps de réponse de B, t3 − t2. Il ne reste que le trajet de l'onde. |
+| 1:25 | L'horloge avance par paliers de 1,5625 ns, environ 23 centimètres. |
+| 1:30 | La carte fait 16 échanges par session, soit environ 115 mesures par seconde, et tout est intégré dans la puce. |
+| 1:39 | Problème : une seule mesure est imprécise. |
+| 1:42 | Chaque valeur tombe un peu à côté : ± 4,5 ns, soit 70 centimètres. |
+| 1:49 | Mais en accumulant les mesures, l'histogramme dessine une courbe en cloche, centrée sur la vraie valeur. |
+| 1:55 | L'erreur de la moyenne diminue comme 1/√N. |
+| 1:59 | Avec 600 mesures, on descend à environ 3 centimètres. |
+| 2:04 | On répète la mesure à 8 distances, de 2 à 20 mètres. |
+| 2:10 | Les points s'alignent sur une droite. |
+| 2:13 | Sa pente vaut 2 / c. |
+| 2:17 | Donc c = 2 / pente. |
+| 2:21 | Ici, on trouve environ 300 millions de mètres par seconde. |
+| 2:25 | Et les petits retards fixes de l'électronique ne changent pas la pente : seule la pente compte. |
+| 2:32 | Côté matériel : la carte B est une console ES3C28P, avec une puce ESP32-S3 et un écran tactile. |
+| 2:41 | La carte A est une simple carte ESP32-S3, qui sert de répondeur. |
+| 2:47 | Attention : l'ESP32 classique et les premiers C6 ne savent pas faire de FTM. |
+| 2:53 | Dans la console, un cœur gère le Wi-Fi et l'écran, l'autre calcule et dessine l'interface. |
+| 3:01 | Tout le code est écrit pour Arduino : le programme des deux cartes, l'interface animée, les calculs, et même un simulateur pour PC. |
+| 3:13 | Au démarrage, la console cherche la carte A, s'y connecte, puis affiche le temps de vol en direct. |
+| 3:22 | Dans les réglages, on choisit la source des mesures, le plan de mesure, le nombre de mesures par point, et la luminosité. |
+| 3:36 | Une règle tactile permet d'indiquer la distance, mesurée au mètre ruban. |
+| 3:42 | Premier piège : trop près, à 50 cm, une partie des mesures est bloquée à zéro. L'écran prévient, et on supprime ce point. |
+| 3:54 | À 2 mètres, la carte enregistre 600 mesures en 5 secondes, avec l'histogramme en direct. |
+| 4:02 | Dès la deuxième distance, la console calcule une première valeur de c, et la dévoile à l'écran. |
+| 4:12 | On continue ainsi jusqu'à 20 mètres. Chaque pastille verte est une distance mesurée. |
+| 4:26 | L'onglet Courbe montre la droite, sa pente, et le détail de chaque point. |
+| 4:32 | L'onglet Résultat donne c, son incertitude, et l'écart à la vraie valeur. |
+| 4:38 | Enfin, l'onglet Stats montre tout ce que la carte a calculé : échantillons, sessions, rejets, et la distribution des temps de vol. |
+| 4:49 | Pour mesurer en classe : on se place dehors, ou dans un long couloir. |
+| 4:53 | Les cartes sont à 1 mètre du sol, antennes face à face, et la carte A reste fixe. |
+| 4:59 | On mesure la distance au mètre ruban, on la règle sur l'écran, et on lance la mesure, sans bouger. |
+| 5:05 | Pièges à éviter : moins de 2 mètres, des murs trop proches, et des personnes entre les cartes. |
+| 5:12 | Dans cet exemple, on obtient 298,9 millions de mètres par seconde : à 0,3 % de la valeur exacte. |
+| 5:21 | Ce résultat vient du simulateur. À vous de faire la vraie mesure ! |
+| 5:26 | Tout est sur GitHub : le code, le tutoriel, et un protocole pour les étudiants. |
+| 5:32 | Merci d'avoir regardé ! |
+
+> Le résultat de 298,9 × 10⁶ m/s montré dans la vidéo vient du simulateur, dont les données sont calées sur de vraies mesures FTM entre deux ESP32-S3 : la vidéo le dit. Si tu filmes ta vraie mesure, remplace cette séquence par ton résultat.
