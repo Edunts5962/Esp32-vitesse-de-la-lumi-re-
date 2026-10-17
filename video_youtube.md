@@ -1,11 +1,3 @@
-# Vidéo YouTube : « Mesurer la vitesse de la lumière avec deux ESP32 »
-
-Fichier : [lumiere_esp32_presentation.mp4](https://github.com/Edunts5962/Esp32-vitesse-de-la-lumi-re-/releases/latest) (page Releases), en 1920 × 1080, 30 images/s, d'une durée de **5 min 36 s**, avec une **voix off française synthétisée** et une musique d'ambiance discrète. Les sous-titres sont dans lumiere_esp32_presentation.fr.srt (page Releases) (YouTube Studio > Sous-titres > Importer un fichier).
-
-Miniature proposée (1280 × 720) : [`images/miniature_youtube.png`](images/miniature_youtube.png).
-
----
-
 ## Titre
 
 **J'ai mesuré la vitesse de la lumière avec deux ESP32 (et le Wi-Fi)**
